@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('header') %>
+
+  <body id="page-top">
+
+    <%- include('navbar') %>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/users-page">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Clients</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/catalog-page">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Catalogue Produits</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/orders-list-page">
+            <i class="fas fa-shopping-basket"></i>
+            <span>Commandes</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/charts">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Charts</span></a>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <div class="card mb-3">
+            <div class="card-header">
+            <i class="fas fa-users"></i>
+            Liste des clients</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="users-list" class="table table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Prénom</th>
+                      <th>Nom</th>
+                      <th>email</th>
+                      <th>password</th>
+                      <th>Age</th>
+                      <th>Sexe</th>
+                      <th>Date inscription</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Prénom</th>
+                      <th>Nom</th>
+                      <th>email</th>
+                      <th>password</th>
+                      <th>Age</th>
+                      <th>Sexe</th>
+                      <th>Date inscription</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <% for( let i = 0; i < users.length; i++ ) { %>
+                      <tr>
+                        <td><%= users[i].firstName %></td>
+                        <td><%= users[i].lastName %></td>
+                        <td><%= users[i].email %></td>
+                        <td><%= users[i].password %></td>
+                        <td><%= users[i].age %></td>
+                        <td><i class="fas <%= (users[i].gender === "male") ? "fa-male" : "fa-female" %>"></i></td>
+                        <td><%= transformDateUtcInEuro(users[i].dateInsert) %></td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Blackboard</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+
+  </body>
+
+</html>

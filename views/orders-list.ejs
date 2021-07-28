@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('header')%>
+
+  <body id="page-top">
+
+    <%- include('navbar') %>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="sidebar navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/users-page">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Clients</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/catalog-page">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Catalogue Produits</span></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/orders-list-page">
+            <i class="fas fa-shopping-basket"></i>
+            <span>Commandes</span></a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="/charts">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Charts</span></a>
+        </li>
+      </ul>
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <div class="card mb-3">
+            <div class="card-header">
+            <i class="fas fa-table"></i>
+             Liste des commandes</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="product-list" class="table table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date Commande</th>
+                      <th>Total</th>
+                      <th>Frais de port</th>
+                      <th>Payée</th>
+                      <th>Date Paiement</th>
+                      <th>Expédiée</th>
+                      <th>Date Exp</th>
+                      <th>Adresse</th>
+                      <th>Ville</th>
+                      <th>Code postal</th>
+                      <th>Détail</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Date Commande</th>
+                      <th>Total</th>
+                      <th>Frais de port</th>
+                      <th>Payée</th>
+                      <th>Date Paiement</th>
+                      <th>Expédiée</th>
+                      <th>Date Exp</th>
+                      <th>Adresse</th>
+                      <th>Ville</th>
+                      <th>Code postal</th>
+                      <th>Détail</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <% for( let i = 0; i < orders.length; i++ ) { %>
+                      <tr>
+                        <td><%= orders[i].date_insert %></td>
+                        <td><%= orders[i].total %></td>
+                        <td><%= orders[i].shipping_cost %></td>
+                        <td class="<%= (orders[i].status_payment === 'validated') ? "status-success bg-success" : ((orders[i].status_payment === 'waiting') ? "status-secondary bg-secondary" : "status-danger bg-danger") %>"><i class="fas fa-circle"></i></td>
+                        <td><%= (orders[i].date_payment && orders[i].status_payment === 'validated') ? orders[i].date_payment : "-" %></td>
+                        <td class="<%= orders[i].status_shipment === true ? "status-success bg-success" : "status-secondary" %>"><i class="fas fa-circle"></i></td>
+                        <td><%= (orders[i].date_shipment && orders[i].status_shipment === true) ? orders[i].date_shipment : "-" %></td>
+                        <td><%= orders[i].delivery_address %></td>
+                        <td><%= orders[i].delivery_city %></td>
+                        <td><%= orders[i].delivery_zipcode %></td>
+                        <td><a href="/order-page?id=<%= orders[i]._id %>">voir</a></td>
+                      </tr>
+                    <% } %>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Blackboard</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+  </body>
+
+</html>
